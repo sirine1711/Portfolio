@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio - BTS SIO SLAM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-section {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        #back-to-top {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            transition: transform 0.3s ease;
+        }
+        
+        .tech-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Style pour les ancres */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Style pour les veilles technologiques */
+        .veille-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+
+        .veille-expanded .veille-content {
+            max-height: 1000px;
+        }
+
+        .veille-toggle {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <!-- Bouton de retour en haut -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition duration-300 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Barre de navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-40">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <span class="text-xl font-bold text-blue-600">MonPortfolio</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#accueil" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2">Accueil</a>
+                    <a href="#apropos" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2">À propos</a>
+                    <a href="#competences" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2">Compétences</a>
+                    <a href="#projets" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2">Projets</a>
+                    <a href="#bts" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2">BTS SIO</a>
+                    <a href="#veille" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2">Veille</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-700 hover:text-blue-600 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Menu mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#accueil" class="nav-link block px-3 py-2 text-gray-700 hover:text-blue-600">Accueil</a>
+                <a href="#apropos" class="nav-link block px-3 py-2 text-gray-700 hover:text-blue-600">À propos</a>
+                <a href="#competences" class="nav-link block px-3 py-2 text-gray-700 hover:text-blue-600">Compétences</a>
+                <a href="#projets" class="nav-link block px-3 py-2 text-gray-700 hover:text-blue-600">Projets</a>
+                <a href="#bts" class="nav-link block px-3 py-2 text-gray-700 hover:text-blue-600">BTS SIO</a>
+                <a href="#veille" class="nav-link block px-3 py-2 text-gray-700 hover:text-blue-600">Veille</a>
+                <a href="#contact" class="nav-link block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main>
+<!-- Section Accueil -->
+<section id="accueil" class="min-h-screen pt-20 flex items-center bg-gradient-to-r from-blue-50 to-indigo-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <div class="animate-section">
+            <div class="md:flex items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Bonjour, je suis <span class="text-blue-600">Sirine El Gaied</span></h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold text-gray-700 mb-6">Étudiante en 2e année de BTS SIO option SLAM</h2>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Je suis en alternance chez <strong>Digital Data Performance</strong>, où je développe mes compétences en développement web, conception d'applications et gestion de projets informatiques.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Me contacter</a>
+                        <a href="#projets" class="border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition duration-300">Mes projets</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-100 shadow-xl">
+                        <img src="sirine.png" alt="Photo de Sirine El Gaied" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section À propos -->
+<section id="apropos" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="animate-section">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">À propos de moi</h2>
+  
+        <div class="md:flex">
+          <!-- Partie gauche : Mon parcours -->
+          <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Mon parcours</h3>
+            <p class="text-gray-600 mb-6">
+              Actuellement étudiante en BTS SIO option SLAM (Solutions Logicielles et Applications Métiers) à l'EFREI, je suis en alternance depuis 2023 chez Digital Data Performance (DDP), une entreprise spécialisée dans la valorisation de la donnée et la transformation digitale. Chez DDP, j'ai l'opportunité de participer à des projets de développement web et à l'amélioration de processus métiers via des outils comme ServiceNow.
+            </p>
+            <p class="text-gray-600 mb-6">
+              Avant cela, j'ai obtenu en 2023 un baccalauréat général avec les spécialités NSI (Numérique et Sciences Informatiques) et Anglais. Passionnée par les nouvelles technologies, je m'efforce de rester à jour sur les tendances du numérique et de développer continuellement mes compétences en programmation et en gestion de projets.
+            </p>
+  
+            <!-- Infos personnelles -->
+            <div class="bg-blue-50 p-6 rounded-lg">
+              <h4 class="text-xl font-semibold text-gray-800 mb-4">Informations personnelles</h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <p class="font-medium text-gray-700">Nom complet:</p>
+                  <p class="text-gray-600">Sirine El Gaied</p>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-700">Âge:</p>
+                  <p class="text-gray-600">19 ans</p>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-700">Email:</p>
+                  <p class="text-gray-600">sirine.elgaied@gmail.com</p> 
+                </div>
+                <div>
+                  <p class="font-medium text-gray-700">Téléphone:</p>
+                  <p class="text-gray-600">07.69.32.09.15</p>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-700">Formation:</p>
+                  <p class="text-gray-600">BTS SIO SLAM</p>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-700">École:</p>
+                  <p class="text-gray-600">EFREI</p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Partie droite : Expériences -->
+          <div class="md:w-1/2">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Mes expériences & diplômes</h3>
+  
+            <div class="space-y-6">
+              <!-- Bac général -->
+            <div class="border-l-4 border-blue-500 pl-6 py-2">
+                <div class="flex items-start">
+                <div class="bg-blue-100 p-2 rounded-full mr-4">
+                    <i class="fas fa-graduation-cap text-blue-600"></i>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-800">Baccalauréat Général</h4>
+                    <p class="text-blue-600 font-medium">Spécialités NSI & LLCE Anglais</p>
+                    <p class="text-gray-500 text-sm">2023</p>
+                    <p class="text-gray-600 mt-2">
+                      Baccalauréat obtenu avec les spécialités Numérique et Sciences Informatiques (NSI) et Langues, Littératures et Cultures Étrangères (LLCE) en Anglais.
+                    </p>
+                </div>
+                </div>
+            </div>
+  
+  
+              <!-- Alternance actuelle -->
+              <div class="border-l-4 border-blue-500 pl-6 py-2">
+                <div class="flex items-start">
+                  <div class="bg-blue-100 p-2 rounded-full mr-4">
+                    <i class="fas fa-briefcase text-blue-600"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800">Alternance en développement</h4>
+                    <p class="text-blue-600 font-medium">Digital Data Performance</p>
+                    <p class="text-gray-500 text-sm">Depuis 2023</p>
+                    <p class="text-gray-600 mt-2">
+                      En alternance chez Digital Data Performance, une entreprise spécialisée dans la valorisation de la donnée et la transformation digitale, je participe à des projets de développement web et à l'amélioration de processus métiers via des outils comme ServiceNow.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Fin expérience -->
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<!-- Section Compétences -->
+<section id="competences" class="py-20 bg-gray-50">
+	<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="animate-section">
+			<h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Mes compétences</h2>
+			
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<!-- Compétences techniques -->
+				<div class="bg-white p-8 rounded-xl shadow-md">
+					<h3 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+						<i class="fas fa-code text-blue-600 mr-3"></i> Technologies maîtrisées
+					</h3>
+					
+					<div class="grid grid-cols-3 md:grid-cols-4 gap-6">
+						<div class="flex flex-col items-center">
+							<i class="fab fa-html5 tech-icon"></i>
+							<span class="mt-2 text-gray-700">HTML5</span>
+						</div>
+						<div class="flex flex-col items-center">
+							<i class="fab fa-css3-alt tech-icon"></i>
+							<span class="mt-2 text-gray-700">CSS3</span>
+						</div>
+						<div class="flex flex-col items-center">
+							<i class="fab fa-js tech-icon"></i>
+							<span class="mt-2 text-gray-700">JavaScript</span>
+						</div>
+						<div class="flex flex-col items-center">
+							<i class="fab fa-php tech-icon"></i>
+							<span class="mt-2 text-gray-700">PHP</span>
+						</div>
+						<div class="flex flex-col items-center">
+							<i class="fab fa-java tech-icon"></i>
+							<span class="mt-2 text-gray-700">Java</span>
+						</div>
+						<div class="flex flex-col items-center">
+							<i class="fab fa-python tech-icon"></i>
+							<span class="mt-2 text-gray-700">Python</span>
+						</div>
+						<div class="flex flex-col items-center">
+							<i class="fas fa-database tech-icon"></i>
+							<span class="mt-2 text-gray-700">SQL</span>
+						</div>
+						<div class="flex flex-col items-center">
+							<i class="fab fa-wix tech-icon"></i>
+							<span class="mt-2 text-gray-700">Wix</span>
+						</div>
+						<div class="flex flex-col items-center">
+                            <i class="fas fa-cogs tech-icon"></i> 
+                            <span class="mt-2 text-gray-700">ServiceNow</span>
+                        </div>
+
+						<div class="flex flex-col items-center">
+							<i class="fab fa-wordpress-simple tech-icon"></i>
+							<span class="mt-2 text-gray-700">WordPress</span>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Acquis hors techno -->
+				<div class="bg-white p-8 rounded-xl shadow-md">
+					<h3 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+						<i class="fas fa-user-tie text-blue-600 mr-3"></i> Acquis hors technologies
+					</h3>
+					
+					<div class="space-y-6">
+						<!-- Soft Skills -->
+						<div>
+							<h4 class="font-medium text-gray-700 mb-3">Soft Skills</h4>
+							<div class="flex flex-wrap gap-2">
+								<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Travail d'équipe</span>
+								<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Communication</span>
+								<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Résolution de problèmes</span>
+								<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Adaptabilité</span>
+								<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Autonomie</span>
+								<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Esprit critique</span>
+								<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Gestion du temps</span>
+							</div>
+						</div>
+
+						
+
+						<!-- Gestion de projet -->
+						<div>
+							<h4 class="font-medium text-gray-700 mb-3">Gestion de projet</h4>
+							<div class="flex flex-wrap gap-2">
+								<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Planification</span>
+								<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Suivi de projet</span>
+								<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Gestion des priorités</span>
+							</div>
+						</div>
+
+                        <!-- Langues -->
+						<div>
+							<h4 class="font-medium text-gray-700 mb-3">Langues</h4>
+							<div class="flex items-center space-x-4">
+								<div class="flex items-center">
+									<i class="fas fa-language text-blue-500 mr-2"></i>
+									<span>Français (Natif)</span>
+								</div>
+								<div class="flex items-center">
+									<i class="fas fa-language text-blue-500 mr-2"></i>
+									<span>Anglais (Intermédiaire)</span>
+								</div>
+							</div>
+						</div>
+  
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="text-center mt-8">
+    <a href="Tableau_Synthese_Sirine_El_Gaied.xlsx" download class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-md transition duration-300">
+      📥 Télécharger le tableau de synthèse (.xlsx)
+    </a>
+</div>
+  
+        <!-- Section Projets -->
+        <section id="projets" class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="animate-section">
+                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Mes projets</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Projet Refonte du site D-DP -->
+<div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
+    <div class="h-48 overflow-hidden bg-blue-50 flex items-center justify-center">
+        <i class="fab fa-wordpress text-6xl text-blue-600"></i>
+    </div>
+    <div class="p-6">
+        <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-bold text-gray-800">Refonte du site web de D-DP</h3>
+            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Web</span>
+        </div>
+        <p class="text-gray-600 mb-4">
+            Projet de refonte réalisé en 2023 pour l’entreprise D-DP. Modernisation du design et amélioration de l’expérience utilisateur.
+        </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">WordPress</span>
+        </div>
+        <a href="refonte_site.html" class="text-blue-600 hover:underline text-sm">
+            Voir la présentation complète du projet →
+        </a>
+    </div>
+</div>
+
+
+                       <!-- Projet ServiceNow chez Heliaq (ex-Koesio) -->
+<div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
+    <div class="h-48 overflow-hidden bg-blue-50 flex items-center justify-center">
+        <i class="fas fa-tools text-6xl text-blue-600"></i>
+    </div>
+    <div class="p-6">
+        <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-bold text-gray-800">Automatisation ITSM chez Heliaq</h3>
+            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">ServiceNow</span>
+        </div>
+        <p class="text-gray-600 mb-4">
+            Projet réalisé en 2024-2025 dans le cadre de mon alternance en BTS SIO SLAM. Automatisation de la gestion des incidents et participation à la mise en production via la plateforme ServiceNow.
+        </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">ServiceNow</span>
+            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">JavaScript</span>
+            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">Agile</span>
+            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">ITSM</span>
+        </div>
+        <a href="heliaq_servicenow.html" class="text-blue-600 hover:underline text-sm">
+            Voir la présentation complète du projet →
+        </a>
+    </div>
+</div>
+
+                        
+                       <!-- Projet 3 -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
+                            <div class="h-48 overflow-hidden bg-blue-50 flex items-center justify-center">
+                                <i class="fas fa-database text-6xl text-blue-600"></i>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-xl font-bold text-gray-800">Projet Twitch </h3>
+                                    <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Base de données</span>
+                                </div>
+                                <p class="text-gray-600 mb-4">
+                                    Réalisation d'une base de données en étoile sur le thème de Twitch dans le cadre du projet "Koezio". Le modèle comprend plus de 50 tables, développé et testé sur Looping.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">SQL</span>
+                                    <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">Looping</span>
+                                    <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">Modèle étoile</span>
+                                </div>
+                                <a href="twitch.html" class="text-blue-600 hover:underline text-sm">
+                                    → Voir les détails du projet
+                                </a>
+                            </div>
+                        </div>
+                    
+
+                    <!--Projet 4-->
+
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
+                        <div class="h-48 overflow-hidden bg-blue-50 flex items-center justify-center">
+                            <i class="fas fa-cloud-sun text-6xl text-blue-600"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-gray-800">Application Météo</h3>
+                                <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Web App</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">
+                                Développement d'une application météo dans le cadre de mon BTS SIO. Elle permet de consulter les prévisions météorologiques actuelles pour différentes villes grâce à l'API OpenWeatherMap.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">HTML</span>
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">CSS</span>
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">JavaScript</span>
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">Next.js</span>
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">API</span>
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">Vercel</span>
+                            </div>
+                            <a href="meteo.html" class="text-blue-600 hover:underline text-sm">
+                                → Voir les détails du projet
+                            </a>
+                        </div>
+                    </div>
+
+                
+
+                <!-- Projet Application Inventaire -->
+<div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition duration-300">
+    <div class="h-48 overflow-hidden bg-blue-50 flex items-center justify-center">
+        <i class="fas fa-boxes text-6xl text-blue-600"></i>
+    </div>
+    <div class="p-6">
+        <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-bold text-gray-800">Application Inventaire</h3>
+            <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Gestion</span>
+        </div>
+        <p class="text-gray-600 mb-4">
+            Développement d'une application d'inventaire pour la gestion des stocks. Cette application permet de suivre les entrées et sorties de produits, de générer des rapports et de gérer les niveaux de stock.
+        </p>
+        <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">SQL</span>
+            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">PHP</span>
+            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">HTML</span>
+            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">CSS</span>
+            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">JavaScript</span>
+        </div>
+        <a href="inventaire.html" class="text-blue-600 hover:underline text-sm">
+            → Voir les détails du projet
+        </a>
+    </div>
+</div>
+</section>
+
+ <!-- Section BTS SIO -->
+<section id="bts" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="animate-section">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">BTS Services Informatiques aux Organisations (SIO)</h2>
+            
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-8">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Présentation de la formation</h3>
+                    <p class="text-gray-600 mb-6">
+                        Le BTS Services Informatiques aux Organisations (SIO) est une formation de niveau Bac+2 qui forme des techniciens capables de répondre aux besoins des entreprises en matière de services informatiques. Cette formation offre une double spécialisation, permettant de se concentrer soit sur le développement d’applications logicielles, soit sur l’administration des systèmes et des réseaux.
+                    </p>
+                    
+                    <p class="text-gray-600 mb-6">
+                        Le programme est conçu pour développer une expertise en gestion des services informatiques, avec un accent particulier sur les technologies actuelles et les pratiques professionnelles utilisées dans le secteur. Grâce à un enseignement théorique solide et une forte composante pratique, les étudiants sont prêts à entrer dans le monde professionnel avec des compétences recherchées par les entreprises.
+                    </p>
+                    
+                    <h4 class="font-semibold text-gray-800 mb-3">Les deux options du BTS SIO : SLAM vs SISR</h4>
+                    <p class="text-gray-600 mb-6">
+                        Le BTS SIO propose deux options distinctes, adaptées aux différents profils d'étudiants :
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <!-- Option SLAM -->
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-laptop-code text-blue-600 mr-2"></i> Option SLAM (Solutions Logicielles et Applications Métiers)
+                            </h4>
+                            <p class="text-gray-600">
+                                L’option SLAM est orientée vers le développement d’applications logicielles et la gestion des projets informatiques. Elle prépare les étudiants à créer des solutions logicielles pour répondre aux besoins spécifiques des entreprises, en utilisant des technologies modernes de programmation.
+                            </p>
+                            <p class="text-gray-600 mt-4">
+                                Les étudiants SLAM apprendront à concevoir des applications robustes, à développer des solutions logicielles, et à maîtriser des outils comme les bases de données, les langages de programmation (Java, C#, PHP, Python) et des environnements de développement comme Eclipse ou Visual Studio.
+                            </p>
+                            <p class="text-gray-600 mt-4">
+                                Ils seront également formés à la gestion de projet agile, afin de pouvoir mener à bien des projets de développement en équipe et dans des délais serrés, en adoptant les meilleures pratiques du secteur.
+                            </p>
+                        </div>
+
+                        <!-- Option SISR -->
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-server text-blue-600 mr-2"></i> Option SISR (Solutions d'Infrastructure, Systèmes et Réseaux)
+                            </h4>
+                            <p class="text-gray-600">
+                                L’option SISR est destinée aux étudiants intéressés par la gestion des infrastructures, des systèmes et des réseaux informatiques. Les étudiants de cette spécialisation seront formés à l’installation, la configuration et la maintenance des équipements informatiques, tout en garantissant la sécurité et la performance des réseaux d’entreprise.
+                            </p>
+                            <p class="text-gray-600 mt-4">
+                                Ils apprendront à gérer des serveurs, des réseaux, des systèmes d’exploitation, ainsi que des outils de virtualisation et de gestion de la sécurité informatique (pare-feu, VPN, systèmes de sauvegarde). Une partie de la formation sera dédiée à l’administration des bases de données, la gestion des systèmes d’information et la résolution des problèmes techniques liés à l’infrastructure.
+                            </p>
+                            <p class="text-gray-600 mt-4">
+                                Cette option est idéale pour ceux qui aiment travailler sur le terrain, gérer des projets d’infrastructure complexes et veiller à la disponibilité des systèmes informatiques essentiels au bon fonctionnement des entreprises.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <h4 class="font-semibold text-gray-800 mb-3">Pourquoi avoir choisi l'option SLAM ?</h4>
+                    <p class="text-gray-600 mb-4">
+                        J'ai choisi l’option SLAM car je suis passionné par le développement de logiciels et la création d’applications sur mesure. J’apprécie la capacité d’un programme informatique à résoudre des problèmes réels et à apporter des solutions concrètes aux utilisateurs. De plus, le développement d’applications implique une approche dynamique, où il est crucial d’être toujours à jour avec les dernières tendances et les nouveaux langages de programmation.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Cette spécialisation me permet d’acquérir des compétences en programmation, mais aussi en gestion de projet et en travail d’équipe, des compétences essentielles dans le monde du développement. La possibilité de travailler sur des projets réels, avec une forte composante technique, est un aspect que je trouve très stimulant et formateur.
+                    </p>
+                    
+                    <h4 class="font-semibold text-gray-800 mb-3">Les débouchés après le BTS SIO</h4>
+                    <p class="text-gray-600 mb-4">
+                        Les diplômés du BTS SIO, qu’ils aient choisi l’option SLAM ou SISR, disposent de nombreuses opportunités professionnelles. Les compétences acquises durant la formation permettent d’accéder à des postes variés dans le domaine de l’informatique, tels que :
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>Développeur d’applications</li>
+                        <li>Administrateur systèmes et réseaux</li>
+                        <li>Chef de projet informatique</li>
+                        <li>Technicien support informatique</li>
+                        <li>Consultant en infrastructure et systèmes d’information</li>
+                    </ul>
+                    <p class="text-gray-600 mb-4">
+                        De plus, avec une expérience professionnelle ou des formations complémentaires, il est possible d’évoluer vers des rôles de plus grande responsabilité, comme responsable de la sécurité informatique ou architecte de solutions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <!-- Section Veille -->
+        <section id="veille" class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="animate-section">
+                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Ma veille technologique</h2>
+                    
+                    <div class="space-y-8">
+        <!-- Veille 1 - Algorithme TikTok -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+            <div class="veille-toggle flex items-center justify-between p-6 cursor-pointer bg-blue-50">
+                <div class="flex items-center">
+                    <i class="fab fa-tiktok text-3xl text-blue-600 mr-4"></i>
+                    <h3 class="text-xl font-bold text-gray-800">L'algorithme de TikTok (2023-2025)</h3>
+                </div>
+                <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
+            </div>
+
+            <div class="veille-content px-6">
+                <div class="pb-6">
+                    <h4 class="font-semibold text-gray-800 mb-3">Introduction</h4>
+                    <p class="text-gray-600 mb-4">
+                        Devenu incontournable dans l’univers des réseaux sociaux, TikTok repose sur un algorithme ultra-performant capable de prédire les préférences utilisateurs en quelques secondes. Depuis septembre 2023, de nombreuses évolutions ont été observées, notamment en réponse aux pressions réglementaires, comme le DMA en Europe.
+                    </p>
+
+                    <h4 class="font-semibold text-gray-800 mb-3">Fonctionnement de l'algorithme</h4>
+                    <p class="text-gray-600 mb-4">
+                        L’algorithme analyse les données suivantes :
+                    </p>
+                    <ul class="list-disc pl-6 text-gray-600 mb-4 space-y-2">
+                        <li><strong>Temps de visionnage</strong> : C’est l’indicateur le plus important.</li>
+                        <li><strong>Interactions</strong> : Likes, commentaires, partages, abonnements.</li>
+                        <li><strong>Métadonnées de contenu</strong> : Hashtags, sons, descriptions.</li>
+                        <li><strong>Données système</strong> : Langue, appareil, localisation.</li>
+                        <li><strong>Sessions passées</strong> : Les vidéos déjà regardées influencent fortement les recommandations.</li>
+                    </ul>
+
+                    <h4 class="font-semibold text-gray-800 mb-3">Évolutions récentes (2023–2025)</h4>
+                    <p class="text-gray-600 mb-4">
+                        En septembre 2023, TikTok a commencé à tester un nouveau flux "For You" européen séparé de l’algorithme personnalisé pour se conformer au DMA. En 2024, l'intégration plus poussée de l’IA générative (basée sur NLP et reconnaissance faciale) a permis une meilleure compréhension des vidéos, même sans tags explicites. TikTok mise également sur des algorithmes plus transparents et sur l’intelligence artificielle responsable.
+                    </p>
+
+                    <h4 class="font-semibold text-gray-800 mb-3">Impact et critiques</h4>
+                    <p class="text-gray-600 mb-4">
+                        L’algorithme est performant mais soulève des questions : effet bulle, addiction, collecte massive de données. Certains chercheurs et législateurs évoquent un “système trop efficace” qui pourrait manipuler l’attention, voire l’opinion publique. TikTok travaille sur plus de contrôle utilisateur, notamment un historique plus accessible et des options de personnalisation.
+                    </p>
+
+                    <h4 class="font-semibold text-gray-800 mb-3">Sources et références</h4>
+                        <ul class="list-disc pl-6 text-gray-600 mb-4 space-y-2">
+                            <li><a href="https://www.ecranmobile.fr/TikTok-devoile-les-secrets-de-son-algorithme-pour-plus-de-transparence-et-de-confiance_a77827.html" class="text-blue-600 hover:underline" target="_blank">Ecran Mobile : TikTok dévoile les secrets de son algorithme</a></li>
+                            <li><a href="https://metricool.com/fr/algorithme-tiktok/" class="text-blue-600 hover:underline" target="_blank">Metricool : Comprendre l'algorithme TikTok</a></li>
+                            <li><a href="https://www.frandroid.com/android/applications/2563525_tiktok-revele-les-secrets-de-son-algorithme" class="text-blue-600 hover:underline" target="_blank">Frandroid : TikTok dévoile son algorithme</a></li>
+                            <li><a href="https://www.visibrain.com/fr/blog/visibrain-veille-tiktok" class="text-blue-600 hover:underline" target="_blank">Visibrain : Veille sur TikTok</a></li>
+                            <li><a href="https://www.bases-netsources.com/articles-de-netsources/comment-surveiller-tiktok-un-reseau-social-atypique-pour-le-veilleur" class="text-blue-600 hover:underline" target="_blank">Netsources : Comment surveiller TikTok</a></li>
+                        </ul>
+
+
+                    <h4 class="font-semibold text-gray-800 mb-3">Conclusion</h4>
+                    <p class="text-gray-600">
+                        L’algorithme de TikTok évolue sans cesse : plus intelligent, plus réactif, mais aussi sous plus de surveillance. De septembre 2023 à mai 2025, son développement s’est orienté vers la transparence, l’intelligence artificielle avancée et la conformité légale — autant de facteurs à suivre pour les créateurs et professionnels du numérique.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+                        
+<!-- Veille 2 - L'IA dans le football -->
+<div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+    <div class="veille-toggle flex items-center justify-between p-6 cursor-pointer bg-blue-50">
+        <div class="flex items-center">
+            <i class="fas fa-robot text-3xl text-blue-600 mr-4"></i>
+            <h3 class="text-xl font-bold text-gray-800">L'IA dans le football (2023–2025)</h3>
+        </div>
+        <i class="fas fa-chevron-down text-blue-600 transition-transform duration-300"></i>
+    </div>
+
+    <div class="veille-content px-6">
+        <div class="pb-6">
+            <h4 class="font-semibold text-gray-800 mb-3">Introduction</h4>
+            <p class="text-gray-600 mb-4">
+                L’intelligence artificielle (IA) transforme profondément le football, tant au niveau des performances des joueurs que de l’expérience des fans. De la détection des talents à la gestion tactique, l'IA devient un partenaire essentiel dans l'optimisation des résultats et l’amélioration de l’engagement dans le sport.
+            </p>
+            
+            <h4 class="font-semibold text-gray-800 mb-3">Ce que l'IA apporte dans le football</h4>
+            <p class="text-gray-600 mb-4">
+                L’IA a plusieurs applications pratiques qui révolutionnent le football moderne, aussi bien sur le terrain que dans les coulisses des clubs :
+            </p>
+            <ul class="list-disc pl-6 text-gray-600 mb-4 space-y-2">
+                <li><strong>Analyse de match en temps réel :</strong> Les systèmes basés sur l’IA permettent d’analyser instantanément les actions du jeu, d’identifier les tendances et d’enrichir les stratégies pendant et après les matchs. Par exemple, des outils comme Stats Perform analysent des milliers de données pour fournir des rapports détaillés sur les performances de l'équipe.</li>
+                <li><strong>Optimisation des entraînements :</strong> Les systèmes d’IA peuvent analyser les données biométriques des joueurs pour ajuster les programmes d'entraînement et prévenir les risques de blessures, améliorant ainsi la longévité et les performances des athlètes.</li>
+                <li><strong>Détection de talents :</strong> Grâce à l’analyse de milliers de vidéos et données, des plateformes comme AiScout ou Scout7 peuvent identifier des joueurs prometteurs à travers le monde, rendant le processus de recrutement plus précis et plus rapide.</li>
+                <li><strong>Personnalisation de l’expérience des fans :</strong> L’IA est utilisée pour personnaliser les interactions avec les supporters, comme le montre l’utilisation de chatbots sur les sites des clubs pour répondre instantanément aux questions des fans et leur proposer des contenus adaptés à leurs préférences.</li>
+            </ul>
+
+            <h4 class="font-semibold text-gray-800 mb-3">Enjeux et défis éthiques</h4>
+            <p class="text-gray-600 mb-4">
+                L’IA dans le football soulève également des questions importantes sur le plan éthique et technique :
+            </p>
+            <ul class="list-disc pl-6 text-gray-600 mb-4 space-y-2">
+                <li><strong>Vie privée et données personnelles :</strong> L’utilisation des données personnelles et biométriques des joueurs est un sujet de débat, car cela implique de gérer des informations sensibles qui doivent être protégées de manière adéquate.</li>
+                <li><strong>Biais algorithmiques :</strong> Les modèles d'IA peuvent potentiellement perpétuer des biais humains, notamment dans les processus de recrutement, ce qui pourrait favoriser certains profils au détriment d'autres, moins visibles mais tout aussi talentueux.</li>
+                <li><strong>Dépendance excessive à la technologie :</strong> Un recours excessif à l'IA pourrait amener les clubs à minimiser l'importance de l’intuition des entraîneurs et de l’expérience sur le terrain, ce qui pourrait affecter la prise de décision stratégique.</li>
+                <li><strong>Inégalité d'accès :</strong> L'accès à ces technologies avancées est principalement réservé aux clubs riches, ce qui crée un fossé entre les grandes équipes et les plus petites, impactant la compétitivité des ligues.</li>
+            </ul>
+
+            <h4 class="font-semibold text-gray-800 mb-3">Sources et références</h4>
+            <ul class="list-disc pl-6 text-gray-600 mb-4 space-y-2">
+                <li><a href="https://www.fifa.com/technical/football-technology" class="text-blue-600 hover:underline" target="_blank">FIFA – Technologies dans le football</a></li>
+                <li><a href="https://www.uefa.com/insideuefa/news/" class="text-blue-600 hover:underline" target="_blank">UEFA – Innovations et IA</a></li>
+                <li><a href="https://www.sporttechie.com/how-ai-is-changing-soccer" class="text-blue-600 hover:underline" target="_blank">SportTechie – How AI is Changing Soccer</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+        <!-- Section Contact -->
+<section id="contact" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="animate-section">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Contactez-moi</h2>
+            
+            <div class="bg-white rounded-xl shadow-md overflow-hidden max-w-4xl mx-auto">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-blue-600 text-white p-12">
+                        <h3 class="text-2xl font-bold mb-6">Coordonnées</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-500 p-3 rounded-full mr-4 flex-shrink-0">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Email</h4>
+                                    <p><a href="mailto:sirine.elgaied@gmail.com" class="hover:underline text-white">sirine.elgaied@gmail.com</a></p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-500 p-3 rounded-full mr-4 flex-shrink-0">
+                                    <i class="fas fa-phone-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Téléphone</h4>
+                                    <p>07.69.32.09.15</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-500 p-3 rounded-full mr-4 flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Localisation</h4>
+                                    <p>Savigny-le-Temple, 77176</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-500 p-3 rounded-full mr-4 flex-shrink-0">
+                                    <i class="fab fa-linkedin-in text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">LinkedIn</h4>
+                                    <a href="https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3BgP7psuEoTqOakWlr%2B4Dx9A%3D%3D" target="_blank" class="hover:underline text-white">Voir mon profil</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-500 p-3 rounded-full mr-4 flex-shrink-0">
+                                    <i class="fab fa-github text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">GitHub</h4>
+                                    <a href="https://github.com/sirine1711" target="_blank" class="hover:underline text-white">github.com/sirine1711</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2 p-12 flex items-center justify-center bg-gray-50">
+                        <div class="text-center">
+                            <i class="fas fa-paper-plane text-6xl text-blue-600 mb-6"></i>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Envoyez-moi un message</h3>
+                            <p class="text-gray-600 mb-6">
+                                Vous pouvez me contacter directement par email ou via LinkedIn.
+                            </p>
+                            <a href="mailto:sirine.elgaied@gmail.com" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300">
+                                <i class="fas fa-envelope mr-2"></i> Envoyer un email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <!-- Pied de page -->
+
+
+    <script>
+        // Menu mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Navigation active
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Bouton retour en haut
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Gestion des veilles technologiques (toggle)
+        document.querySelectorAll('.veille-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const veilleContent = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i.fa-chevron-down');
+                
+                toggle.parentElement.classList.toggle('veille-expanded');
+                
+                if (toggle.parentElement.classList.contains('veille-expanded')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+
+        // Empêcher le comportement par défaut des liens
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

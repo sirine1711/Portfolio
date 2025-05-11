@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projet Twitch - BTS SIO</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #f9fafb;
+      color: #333;
+    }
+
+    header {
+      background-color: #8b5cf6;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      color: #4f46e5;
+      margin-top: 2rem;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    .button-back {
+      display: inline-block;
+      margin-top: 2rem;
+      background-color: #8b5cf6;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .button-back:hover {
+      background-color: #7c3aed;
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Projet Base de Données Twitch</h1>
+    <p>BTS SIO – SLAM</p>
+  </header>
+
+  <main>
+    <h2>Qu'est-ce que Twitch ?</h2>
+    <p>
+      Twitch est une plateforme de streaming vidéo en direct, principalement utilisée par les joueurs pour diffuser leurs parties de jeu, interagir avec leur communauté et partager du contenu en temps réel. Fondée en 2011 et rachetée par Amazon, elle est devenue un pilier majeur du divertissement en ligne.
+    </p>
+
+    <h2>Objectif du projet</h2>
+    <p>
+      Ce projet a été réalisé dans le cadre d’un travail de groupe au sein de la formation BTS SIO SLAM. L’objectif était de modéliser et développer une base de données relationnelle sur le thème de Twitch, respectant le modèle en étoile. Le schéma comprend plus de 50 tables et a été conçu pour simuler l’analyse de données (streams, utilisateurs, abonnements, revenus, jeux, etc.).
+    </p>
+    <p>
+      L’environnement utilisé pour ce projet est <strong>Looping</strong>, un simulateur de base de données pédagogique.
+    </p>
+
+    <h2>Modèle Conceptuel de Données (MCD)</h2>
+    <div class="image-container">
+      <img src="mcdtwitch.png" alt="Modèle Conceptuel de Données Twitch" id="mcd-image" />
+    </div>
+
+    <h2>Compétences mobilisées</h2>
+    <ul>
+      <li>Conception de base de données en étoile</li>
+      <li>Modélisation (MCD)</li>
+      <li>Travail collaboratif sur un projet structuré</li>
+    </ul>
+
+    <a href="index.html" class="button-back">← Retour aux projets</a>
+  </main>
+
+  <!-- Lightbox for image zoom -->
+  <div class="lightbox" id="lightbox">
+    <button class="close-button" id="close-button">&times;</button>
+    <img id="lightbox-image" src="" alt="Agrandissement de l'image" />
+  </div>
+
+  <script>
+    const image = document.getElementById('mcd-image');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const closeButton = document.getElementById('close-button');
+
+    image.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImage.src = image.src;
+    });
+
+    closeButton.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    lightboxImage.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  </script>
+</body>
+</html>
